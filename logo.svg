@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 96" width="420" height="96" role="img" aria-label="Lexora AI">
+  <defs>
+    <linearGradient id="lx-g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+  </defs>
+  <rect width="96" height="96" rx="26" fill="url(#lx-g)"/>
+  <path d="M32 22 V66 Q32 74 40 74 H68" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M32 46 L52 34 L68 48" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="52" cy="34" r="6" fill="#fff"/>
+  <circle cx="68" cy="48" r="6" fill="#fff"/>
+  <text x="116" y="66" font-family="Manrope, Inter, 'Segoe UI', Arial, sans-serif" font-size="54" font-weight="800" letter-spacing="-1.5" fill="#0F172A">Lexora</text>
+  <rect x="318" y="30" width="62" height="38" rx="12" fill="url(#lx-g)"/>
+  <text x="349" y="57" text-anchor="middle" font-family="Manrope, Inter, 'Segoe UI', Arial, sans-serif" font-size="25" font-weight="800" fill="#fff">AI</text>
+</svg>

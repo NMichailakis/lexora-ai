@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lexora AI</title>
+<meta name="description" content="Lexora AI — γλωσσική νοημοσύνη για την ελληνική γλώσσα. Linguify & NeuroLex. / Language intelligence for Greek. Linguify & NeuroLex.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Lexora AI">
+<meta property="og:description" content="Γλωσσική νοημοσύνη · Language intelligence">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070B16; --bg2:#0D1326; --card:#111A33; --line:rgba(148,163,184,.16);
+  --text:#F1F5F9; --muted:#9AA7BD; --indigo:#6366F1; --teal:#14B8A6;
+  --grad:linear-gradient(135deg,#6366F1,#14B8A6);
+  --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.glow{position:fixed;inset:0;pointer-events:none;z-index:-1;background:
+  radial-gradient(600px 420px at 12% -5%,rgba(99,102,241,.28),transparent 70%),
+  radial-gradient(560px 420px at 92% 8%,rgba(20,184,166,.20),transparent 70%)}
+
+/* nav */
+header{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(7,11,22,.72);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand img{height:34px;display:block}
+.links{display:flex;align-items:center;gap:26px;font-size:.93rem;color:var(--muted);font-weight:600}
+.links a:hover{color:var(--text)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--bg2)}
+.lang button{all:unset;cursor:pointer;padding:6px 13px;border-radius:999px;font-size:.8rem;font-weight:800;letter-spacing:.04em;color:var(--muted);transition:.2s}
+.lang button[aria-pressed="true"]{background:var(--grad);color:#fff}
+.lang button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+@media(max-width:760px){.links a{display:none}}
+
+/* hero */
+.hero{padding:96px 0 72px;text-align:center}
+.pill{display:inline-block;padding:6px 14px;border:1px solid var(--line);border-radius:999px;font-size:.8rem;font-weight:700;color:var(--muted);background:rgba(17,26,51,.6)}
+.pill b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1{font-size:clamp(2.3rem,6.4vw,4.6rem);line-height:1.06;letter-spacing:-.035em;font-weight:800;margin:22px auto 20px;max-width:15ch}
+h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:60ch;margin:0 auto 34px;color:var(--muted);font-size:1.08rem}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:14px;font-weight:700;font-size:.95rem;transition:transform .15s,box-shadow .2s,background .2s;cursor:pointer;border:0;font-family:inherit}
+.btn.primary{background:var(--grad);color:#fff;box-shadow:0 10px 30px -10px rgba(99,102,241,.7)}
+.btn.primary:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--bg2)}
+
+section{padding:76px 0}
+.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+h2{font-size:clamp(1.7rem,3.6vw,2.5rem);letter-spacing:-.025em;line-height:1.15;margin-bottom:12px}
+.sub{color:var(--muted);max-width:58ch;margin-bottom:40px}
+
+/* project cards */
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+.card{position:relative;background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:14px;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:rgba(99,102,241,.5)}
+.ico{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:var(--grad);margin-bottom:4px}
+.ico svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:1.45rem;letter-spacing:-.02em}
+.card h3 small{font-size:.72rem;font-weight:700;color:var(--muted);margin-left:8px;letter-spacing:.02em}
+.card p{color:var(--muted);font-size:.98rem}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px}
+.tags span{font-size:.75rem;font-weight:700;padding:4px 11px;border-radius:999px;background:rgba(99,102,241,.14);color:#C7D2FE}
+.card .btn{margin-top:auto;align-self:flex-start}
+.arrow{transition:transform .2s}.btn:hover .arrow{transform:translateX(4px)}
+
+/* about */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:stretch}
+@media(max-width:820px){.about{grid-template-columns:1fr}}
+.about p{color:var(--muted);margin-bottom:14px}
+.vals{display:grid;gap:12px;margin-top:20px}
+.val{display:flex;gap:14px;padding:16px 18px;border:1px solid var(--line);border-radius:16px;background:rgba(17,26,51,.5)}
+.val i{flex:none;width:10px;height:10px;border-radius:50%;background:var(--grad);margin-top:9px}
+.val b{display:block;font-size:.98rem}
+.val span{color:var(--muted);font-size:.9rem}
+.fact{border-radius:var(--radius);padding:32px;background:var(--grad);color:#fff;display:flex;flex-direction:column;justify-content:space-between;min-height:320px;position:relative;overflow:hidden}
+.fact::after{content:"";position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.12)}
+.fact .k{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.fact h3{font-size:1.5rem;letter-spacing:-.02em;margin:10px 0}
+.fact p{color:rgba(255,255,255,.92)!important;font-size:1rem;margin:0}
+.fact .row{display:flex;align-items:center;justify-content:space-between;margin-top:22px;position:relative;z-index:1}
+.fact .count{font-weight:800;font-size:.85rem;opacity:.85}
+.fact button{all:unset;cursor:pointer;padding:10px 18px;border-radius:12px;background:rgba(255,255,255,.2);font-weight:700;font-size:.88rem;transition:.2s}
+.fact button:hover{background:rgba(255,255,255,.32)}
+.fact button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+/* glossary */
+.search{width:100%;max-width:420px;padding:13px 18px;border-radius:14px;border:1px solid var(--line);background:var(--bg2);color:var(--text);font:inherit;margin-bottom:26px}
+.search:focus{outline:2px solid var(--indigo);border-color:transparent}
+.gloss{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:820px){.gloss{grid-template-columns:1fr}}
+details{border:1px solid var(--line);border-radius:16px;background:rgba(17,26,51,.55);padding:0 20px;transition:border-color .2s}
+details[open]{border-color:rgba(20,184,166,.5)}
+summary{cursor:pointer;list-style:none;padding:17px 0;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.4rem;color:var(--teal);transition:transform .2s;line-height:1}
+details[open] summary::after{transform:rotate(45deg)}
+summary em{font-style:normal;font-size:.72rem;font-weight:700;color:var(--muted);margin-left:8px}
+details p{color:var(--muted);padding-bottom:18px;font-size:.94rem}
+.none{color:var(--muted);display:none;margin-top:14px}
+
+footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-size:.88rem}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.foot img{height:26px;opacity:.95}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Lexora AI"><img src="/assets/logo-dark.svg" alt="Lexora AI"></a>
+    <nav class="links">
+      <a href="#projects" data-i18n="nav_projects"></a>
+      <a href="#about" data-i18n="nav_about"></a>
+      <a href="#glossary" data-i18n="nav_glossary"></a>
+      <div class="lang" role="group" aria-label="Language / Γλώσσα">
+        <button type="button" data-lang="el" aria-pressed="true">EL</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <span class="pill"><b>Lexora AI</b> · <span data-i18n="pill"></span></span>
+    <h1 data-i18n-html="hero_title"></h1>
+    <p class="lead" data-i18n="hero_lead"></p>
+    <div class="cta">
+      <a class="btn primary" href="#projects"><span data-i18n="cta_projects"></span><span class="arrow">→</span></a>
+      <a class="btn ghost" href="#glossary" data-i18n="cta_learn"></a>
+    </div>
+  </div>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="eyebrow" data-i18n="proj_eyebrow"></div>
+      <h2 data-i18n="proj_title"></h2>
+      <p class="sub" data-i18n="proj_sub"></p>
+      <div class="grid2">
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+          <h3>Linguify <small data-i18n="lin_tag"></small></h3>
+          <p data-i18n="lin_desc"></p>
+          <div class="tags"><span data-i18n="lin_t1"></span><span data-i18n="lin_t2"></span><span data-i18n="lin_t3"></span></div>
+          <a class="btn primary" target="_blank" rel="noopener" href="https://linguify-site.vercel.app" data-project="linguify"><span data-i18n="open"></span><span class="arrow">→</span></a>
+        </article>
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12h3l2-6 4 12 3-9 2 3h4"/></svg></div>
+          <h3>NeuroLex <small data-i18n="neu_tag"></small></h3>
+          <p data-i18n="neu_desc"></p>
+          <div class="tags"><span data-i18n="neu_t1"></span><span data-i18n="neu_t2"></span><span data-i18n="neu_t3"></span></div>
+          <a class="btn primary" target="_blank" rel="noopener" href="https://neurolex-jet.vercel.app" data-project="neurolex"><span data-i18n="open"></span><span class="arrow">→</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <div>
+        <div class="eyebrow" data-i18n="about_eyebrow"></div>
+        <h2 data-i18n="about_title"></h2>
+        <p data-i18n="about_p1"></p>
+        <p data-i18n="about_p2"></p>
+        <div class="vals">
+          <div class="val"><i></i><div><b data-i18n="v1_t"></b><span data-i18n="v1_d"></span></div></div>
+          <div class="val"><i></i><div><b data-i18n="v2_t"></b><span data-i18n="v2_d"></span></div></div>
+          <div class="val"><i></i><div><b data-i18n="v3_t"></b><span data-i18n="v3_d"></span></div></div>
+        </div>
+      </div>
+      <aside class="fact" aria-live="polite">
+        <div>
+          <div class="k" data-i18n="fact_k"></div>
+          <h3 id="fact-title"></h3>
+          <p id="fact-text"></p>
+        </div>
+        <div class="row">
+          <span class="count" id="fact-count"></span>
+          <button type="button" id="fact-next" data-i18n="fact_next"></button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="glossary">
+    <div class="wrap">
+      <div class="eyebrow" data-i18n="gl_eyebrow"></div>
+      <h2 data-i18n="gl_title"></h2>
+      <p class="sub" data-i18n="gl_sub"></p>
+      <input class="search" id="gl-search" type="search" data-i18n-ph="gl_search" autocomplete="off">
+      <div class="gloss" id="gl-list"></div>
+      <p class="none" id="gl-none" data-i18n="gl_none"></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="/assets/logo-dark.svg" alt="Lexora AI">
+    <span>© <span id="yr"></span> Lexora AI · <span data-i18n="foot"></span></span>
+  </div>
+</footer>
+
+<script>
+/* ===== Ρυθμίσεις συνδέσμων — άλλαξέ τους εδώ αν αλλάξουν τα links των projects στο Vercel ===== */
+const PROJECT_LINKS = {
+  linguify: "https://linguify-site.vercel.app",
+  neurolex: "https://neurolex-jet.vercel.app"
+};
+
+/* ===== Μεταφράσεις ===== */
+const I18N = {
+  el: {
+    nav_projects:"Projects", nav_about:"Η εταιρεία", nav_glossary:"Ορολογία",
+    pill:"Γλωσσική νοημοσύνη",
+    hero_title:"Η γλώσσα, <span>στο μέλλον της.</span>",
+    hero_lead:"Η Lexora AI συνδυάζει γλωσσολογία και τεχνητή νοημοσύνη για να κάνει την ελληνική γλώσσα πιο προσιτή, πιο ακριβή και πιο κατανοητή — από την επιμέλεια κειμένων μέχρι την ανάλυση του λόγου.",
+    cta_projects:"Δες τα projects", cta_learn:"Μάθε την ορολογία",
+    proj_eyebrow:"Portfolio", proj_title:"Τα προϊόντα μας",
+    proj_sub:"Δύο εργαλεία, ένα κοινό όραμα: να βάλουμε την τεχνητή νοημοσύνη στην υπηρεσία της γλώσσας.",
+    open:"Άνοιγμα",
+    lin_tag:"AI βοηθός γλωσσολογίας",
+    lin_desc:"Ο βοηθός γλωσσολογίας με τεχνητή νοημοσύνη: επιμέλεια και διόρθωση κειμένων, τοπική προσαρμογή (localisation) και απαντήσεις σε ερωτήματα γλώσσας, ακόμη και αρχαίων ελληνικών.",
+    lin_t1:"Επιμέλεια κειμένων", lin_t2:"Localisation", lin_t3:"Αρχαία ελληνικά",
+    neu_tag:"Ανάλυση λόγου",
+    neu_desc:"Εκπαιδευτικό εργαλείο που τρέχει στον browser και αναλύει γλωσσικούς δείκτες σε απομαγνητοφωνημένο λόγο. Δεν είναι διαγνωστικό και η επεξεργασία γίνεται τοπικά, στη συσκευή σου.",
+    neu_t1:"TTR · CTTR · MATTR", neu_t2:"Δισταγμοί & word-finding", neu_t3:"Τοπική επεξεργασία",
+    about_eyebrow:"Η εταιρεία", about_title:"Λέξεις, νόηση και τεχνολογία",
+    about_p1:"Το όνομα Lexora γεννήθηκε από τη λέξη «λέξη» (lexis) και το «ora» — την αύρα, τον λόγο που ακούγεται. Ξεκινά από μια απλή ιδέα: η γλώσσα είναι το πιο ανθρώπινο εργαλείο που έχουμε και αξίζει τεχνολογία φτιαγμένη με γνώση της.",
+    about_p2:"Οι άνθρωποι πίσω από τη Lexora AI έρχονται από τη φιλολογία και τη γλωσσολογία, όχι μόνο από τον προγραμματισμό. Αυτό διαφοροποιεί τον τρόπο που σχεδιάζουμε τα εργαλεία μας.",
+    v1_t:"Γλωσσολογία πρώτα", v1_d:"Κάθε εργαλείο στηρίζεται σε γλωσσική γνώση και όχι μόνο σε μοντέλα.",
+    v2_t:"Ελληνικά ως προτεραιότητα", v2_d:"Φτιάχνουμε για την ελληνική γλώσσα, με τις ιδιαιτερότητές της.",
+    v3_t:"Διαφάνεια", v3_d:"Λέμε καθαρά τι κάνει και τι δεν κάνει κάθε εργαλείο.",
+    fact_k:"Γνωρίζεις ότι…", fact_next:"Επόμενο →",
+    gl_eyebrow:"Ορολογία", gl_title:"Μικρό γλωσσάρι",
+    gl_sub:"Οι βασικοί όροι πίσω από τη δουλειά μας, εξηγημένοι απλά.",
+    gl_search:"Αναζήτηση όρου…", gl_none:"Δεν βρέθηκε όρος.",
+    foot:"Γλωσσική νοημοσύνη για την ελληνική γλώσσα"
+  },
+  en: {
+    nav_projects:"Projects", nav_about:"Company", nav_glossary:"Glossary",
+    pill:"Language intelligence",
+    hero_title:"Language, <span>for its future.</span>",
+    hero_lead:"Lexora AI combines linguistics and artificial intelligence to make the Greek language more accessible, more accurate and easier to understand — from text editing to speech analysis.",
+    cta_projects:"See the projects", cta_learn:"Learn the terms",
+    proj_eyebrow:"Portfolio", proj_title:"Our products",
+    proj_sub:"Two tools, one shared vision: putting artificial intelligence at the service of language.",
+    open:"Open",
+    lin_tag:"AI linguistics assistant",
+    lin_desc:"An AI linguistics assistant: text editing and proofreading, localisation, and answers to language questions — including Ancient Greek.",
+    lin_t1:"Text editing", lin_t2:"Localisation", lin_t3:"Ancient Greek",
+    neu_tag:"Speech analysis",
+    neu_desc:"An educational browser-based tool that analyses linguistic indicators in speech transcripts. It is not diagnostic, and all processing happens locally on your device.",
+    neu_t1:"TTR · CTTR · MATTR", neu_t2:"Hesitations & word-finding", neu_t3:"Local processing",
+    about_eyebrow:"The company", about_title:"Words, cognition and technology",
+    about_p1:"The name Lexora comes from the Greek word for “word” (lexis) and “ora” — the aura, the spoken word. It starts from a simple idea: language is the most human tool we have, and it deserves technology built with knowledge of it.",
+    about_p2:"The people behind Lexora AI come from philology and linguistics, not only from programming. That shapes the way we design our tools.",
+    v1_t:"Linguistics first", v1_d:"Every tool rests on linguistic knowledge, not just on models.",
+    v2_t:"Greek as a priority", v2_d:"We build for the Greek language, with all its particularities.",
+    v3_t:"Transparency", v3_d:"We state clearly what each tool does and what it does not.",
+    fact_k:"Did you know…", fact_next:"Next →",
+    gl_eyebrow:"Glossary", gl_title:"A small glossary",
+    gl_sub:"The key terms behind our work, explained simply.",
+    gl_search:"Search a term…", gl_none:"No term found.",
+    foot:"Language intelligence for the Greek language"
+  }
+};
+
+const FACTS = {
+  el: [
+    {t:"Τι σημαίνει Lexora", d:"Το όνομα συνδυάζει τη «λέξη» (lexis) με το «ora». Αποτυπώνει την ιδέα της γλώσσας ως ζωντανού λόγου."},
+    {t:"Δύο προϊόντα, μία οικογένεια", d:"Το Linguify υποστηρίζει τη γραφή και την επιμέλεια κειμένων, ενώ το NeuroLex αναλύει τον προφορικό λόγο. Είναι οι δύο όψεις της ίδιας γλώσσας."},
+    {t:"Το NeuroLex δεν κάνει διάγνωση", d:"Είναι εκπαιδευτικό εργαλείο: δείχνει γλωσσικούς δείκτες, αλλά δεν βγάζει ιατρικά συμπεράσματα. Η ερμηνεία ανήκει πάντα σε ειδικούς."},
+    {t:"Τα δεδομένα μένουν σε σένα", d:"Η ανάλυση του NeuroLex γίνεται τοπικά στον browser, χωρίς να στέλνονται κείμενα σε εξωτερικό διακομιστή."},
+    {t:"Από τα αρχαία έως σήμερα", d:"Το Linguify καλύπτει σύγχρονα και αρχαία ελληνικά, γιατί η γλώσσα έχει μια συνεχή ιστορία τριών χιλιετιών."}
+  ],
+  en: [
+    {t:"What Lexora means", d:"The name combines the Greek “lexis” (word) with “ora”. It captures the idea of language as living speech."},
+    {t:"Two products, one family", d:"Linguify supports writing and text editing, while NeuroLex analyses spoken language. They are two sides of the same language."},
+    {t:"NeuroLex does not diagnose", d:"It is an educational tool: it shows linguistic indicators but draws no medical conclusions. Interpretation always belongs to specialists."},
+    {t:"Your data stays with you", d:"NeuroLex runs locally in the browser, without sending any text to an external server."},
+    {t:"From ancient to modern", d:"Linguify covers both Modern and Ancient Greek, because the language has a continuous history of three millennia."}
+  ]
+};
+
+const GLOSSARY = {
+  el: [
+    ["Lexora AI","Η εταιρεία που ενώνει γλωσσολογία και τεχνητή νοημοσύνη για την ελληνική γλώσσα."],
+    ["Γλωσσολογία","Η επιστημονική μελέτη της γλώσσας: ήχοι, λέξεις, σύνταξη, νόημα και χρήση."],
+    ["NLP (Επεξεργασία Φυσικής Γλώσσας)","Κλάδος της πληροφορικής που διδάσκει στους υπολογιστές να διαβάζουν, να κατανοούν και να παράγουν ανθρώπινη γλώσσα."],
+    ["LLM (Μεγάλο γλωσσικό μοντέλο)","Μοντέλο τεχνητής νοημοσύνης εκπαιδευμένο σε τεράστιο όγκο κειμένων, ικανό να γράφει, να μεταφράζει και να απαντά σε ερωτήσεις."],
+    ["Prompt","Η οδηγία που δίνουμε σε ένα μοντέλο AI. Ένα καλό prompt έχει ρόλο, πλαίσιο, στόχο και παραδείγματα."],
+    ["Σώμα κειμένων (corpus)","Μεγάλη συλλογή κειμένων που χρησιμοποιείται για να μελετήσουμε πώς χρησιμοποιείται πραγματικά μια γλώσσα."],
+    ["Localisation (Τοπική προσαρμογή)","Προσαρμογή ενός κειμένου στη γλώσσα, στην κουλτούρα και στις συνήθειες ενός κοινού, πέρα από την απλή μετάφραση."],
+    ["TTR (Type-Token Ratio)","Δείκτης λεξιλογικής ποικιλίας: ο λόγος των διαφορετικών λέξεων προς το σύνολο των λέξεων ενός κειμένου."],
+    ["CTTR / MATTR","Παραλλαγές του TTR που διορθώνουν την επίδραση του μήκους του κειμένου, ώστε να συγκρίνονται σωστά κείμενα διαφορετικού μεγέθους."],
+    ["Δισταγμοί & word-finding","Παύσεις, επαναλήψεις και δυσκολία εύρεσης λέξης στον προφορικό λόγο. Μελετώνται στη νευρογλωσσολογία."],
+    ["Νευρογλωσσολογία","Επιστημονικό πεδίο που μελετά πώς ο εγκέφαλος επεξεργάζεται, κατανοεί και παράγει γλώσσα."]
+  ],
+  en: [
+    ["Lexora AI","The company that unites linguistics and artificial intelligence for the Greek language."],
+    ["Linguistics","The scientific study of language: sounds, words, syntax, meaning and use."],
+    ["NLP (Natural Language Processing)","A field of computer science that teaches computers to read, understand and produce human language."],
+    ["LLM (Large Language Model)","An AI model trained on vast amounts of text, able to write, translate and answer questions."],
+    ["Prompt","The instruction given to an AI model. A good prompt has a role, context, a goal and examples."],
+    ["Corpus","A large collection of texts used to study how a language is actually used."],
+    ["Localisation","Adapting a text to the language, culture and habits of an audience, beyond simple translation."],
+    ["TTR (Type-Token Ratio)","A measure of lexical diversity: the ratio of distinct words to the total number of words in a text."],
+    ["CTTR / MATTR","Variants of TTR that correct for text length, so texts of different sizes can be compared fairly."],
+    ["Hesitations & word-finding","Pauses, repetitions and difficulty retrieving a word in speech. Studied in neurolinguistics."],
+    ["Neurolinguistics","The scientific field that studies how the brain processes, understands and produces language."]
+  ]
+};
+
+/* ===== Λογική ===== */
+let lang = "el", factIdx = 0;
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+function safeGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function safeSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+
+function renderFact(){
+  const f = FACTS[lang][factIdx % FACTS[lang].length];
+  $("#fact-title").textContent = f.t;
+  $("#fact-text").textContent = f.d;
+  $("#fact-count").textContent = (factIdx % FACTS[lang].length + 1) + " / " + FACTS[lang].length;
+}
+
+function renderGlossary(){
+  const q = $("#gl-search").value.trim().toLowerCase();
+  const list = $("#gl-list");
+  list.innerHTML = "";
+  let shown = 0;
+  GLOSSARY[lang].forEach(([term, def]) => {
+    if (q && !(term + " " + def).toLowerCase().includes(q)) return;
+    const d = document.createElement("details");
+    const s = document.createElement("summary");
+    s.textContent = term;
+    const p = document.createElement("p");
+    p.textContent = def;
+    d.append(s, p);
+    list.append(d);
+    shown++;
+  });
+  $("#gl-none").style.display = shown ? "none" : "block";
+}
+
+function applyLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  const t = I18N[l];
+  $$("[data-i18n]").forEach(el => { if (t[el.dataset.i18n] !== undefined) el.textContent = t[el.dataset.i18n]; });
+  $$("[data-i18n-html]").forEach(el => { el.innerHTML = t[el.dataset.i18nHtml]; });
+  $$("[data-i18n-ph]").forEach(el => { el.placeholder = t[el.dataset.i18nPh]; });
+  $$(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === l ? "true" : "false"));
+  renderFact();
+  renderGlossary();
+  safeSet("lexora-lang", l);
+}
+
+$$(".lang button").forEach(b => b.addEventListener("click", () => applyLang(b.dataset.lang)));
+$("#fact-next").addEventListener("click", () => { factIdx++; renderFact(); });
+$("#gl-search").addEventListener("input", renderGlossary);
+$$("[data-project]").forEach(a => { a.href = PROJECT_LINKS[a.dataset.project]; });
+$("#yr").textContent = new Date().getFullYear();
+
+const saved = safeGet("lexora-lang");
+const guess = (navigator.language || "el").toLowerCase().startsWith("el") ? "el" : "en";
+applyLang(saved === "en" || saved === "el" ? saved : guess);
+</script>
+</body>
+</html>
