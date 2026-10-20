@@ -67,6 +67,9 @@ h2{font-size:clamp(1.7rem,3.6vw,2.5rem);letter-spacing:-.025em;line-height:1.15;
 .ico{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:var(--grad);margin-bottom:4px}
 .ico svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .card h3{font-size:1.45rem;letter-spacing:-.02em}
+.plogo{height:54px;width:auto;max-width:100%;object-fit:contain;object-position:left center;margin-bottom:2px}
+.ptag{font-size:.78rem!important;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+
 .card h3 small{font-size:.72rem;font-weight:700;color:var(--muted);margin-left:8px;letter-spacing:.02em}
 .card p{color:var(--muted);font-size:.98rem}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px}
@@ -151,15 +154,15 @@ footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-s
       <p class="sub" data-i18n="proj_sub"></p>
       <div class="grid2">
         <article class="card">
-          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></div>
-          <h3>Linguify <small data-i18n="lin_tag"></small></h3>
+          <img class="plogo" src="/assets/linguify-logo.png" alt="Linguify" width="375" height="115">
+          <h3 class="ptag" data-i18n="lin_tag"></h3>
           <p data-i18n="lin_desc"></p>
           <div class="tags"><span data-i18n="lin_t1"></span><span data-i18n="lin_t2"></span><span data-i18n="lin_t3"></span></div>
           <a class="btn primary" target="_blank" rel="noopener" href="https://linguify-site.vercel.app" data-project="linguify"><span data-i18n="open"></span><span class="arrow">→</span></a>
         </article>
         <article class="card">
-          <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12h3l2-6 4 12 3-9 2 3h4"/></svg></div>
-          <h3>NeuroLex <small data-i18n="neu_tag"></small></h3>
+          <img class="plogo" src="/assets/neurolex-logo.png" alt="NeuroLex" width="350" height="118">
+          <h3 class="ptag" data-i18n="neu_tag"></h3>
           <p data-i18n="neu_desc"></p>
           <div class="tags"><span data-i18n="neu_t1"></span><span data-i18n="neu_t2"></span><span data-i18n="neu_t3"></span></div>
           <a class="btn primary" target="_blank" rel="noopener" href="https://neurolex-jet.vercel.app" data-project="neurolex"><span data-i18n="open"></span><span class="arrow">→</span></a>
